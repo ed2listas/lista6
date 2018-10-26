@@ -75,13 +75,17 @@ import javax.swing.JFrame;
 public class framesPanels {
 
 	public static void main(String[] args) {
+		
+		int w = 1200;
+		int h = 600;
+		
 		JFrame janela = new JFrame("");
-		Painel meuPainel = new Painel();
+		Painel meuPainel = new Painel(w, h);
 		
 		janela.getContentPane().setLayout(null);
 		
 		janela.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-		meuPainel.setBounds(100,200,1600,700);
+		meuPainel.setBounds(50,50,w,h);
 		meuPainel.setBorder(BorderFactory.createEtchedBorder(Color.BLACK, Color.BLACK));
 		janela.add(meuPainel);
 		janela.setSize(500,500);

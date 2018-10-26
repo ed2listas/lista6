@@ -9,11 +9,20 @@ import java.awt.Graphics2D;
 import java.util.Random;
 
 public class Painel extends JPanel{
+	
+	int pixel=0;
+    int w;
+    int h;
+    
+	public Painel(int w, int h) {
+		this.w = w;
+		this.h = h;
+	}
+	
 	public void paintComponent( Graphics g ){
+		
 	    super.paintComponent( g );
-	    int pixel=0;
-	    int w = 1550 ;
-	    int h = 670;
+	    
 	    
 	    Graphics2D g2d = (Graphics2D) g;
 
