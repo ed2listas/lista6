@@ -68,9 +68,14 @@ public class JanelaPrincipal extends JFrame {
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class framesPanels {
 
@@ -80,16 +85,59 @@ public class framesPanels {
 		int h = 600;
 		
 		JFrame janela = new JFrame("");
-		Painel meuPainel = new Painel(w, h);
+		Painel painelPontos = new Painel(w, h);
 		
 		janela.getContentPane().setLayout(null);
 		
 		janela.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-		meuPainel.setBounds(50,50,w,h);
-		meuPainel.setBorder(BorderFactory.createEtchedBorder(Color.BLACK, Color.BLACK));
-		janela.add(meuPainel);
-		janela.setSize(500,500);
+		painelPontos.setBounds(50,50,w,h);
+		painelPontos.setBorder(BorderFactory.createEtchedBorder(Color.BLACK, Color.BLACK));
+		
+		janela.setSize(1900,1000);
+		JButton A = new JButton("A");
+		A.setBounds(500,100,500,30);
+		JButton B = new JButton("B");
+		B.setBounds(500,200,500,30);
+		JButton C = new JButton("C");
+		C.setBounds(500,300,500,30);
+		
+		JLabel Titulo = new JLabel("Titulo");
+		Titulo.setBounds(730,30,380,30);
+		
+		JPanel painelPrincipal = new JPanel();
+		painelPrincipal.setLayout(null);
+		painelPrincipal.add(Titulo);
+		painelPrincipal.add(A);
+		painelPrincipal.add(B);
+		painelPrincipal.add(C);
+		janela.add(painelPrincipal);
+		
+		painelPrincipal.setBounds(100,200,1600,800);
+		
+		janela.add(painelPrincipal);
+		janela.setSize(1800,1000);
 		janela.setVisible(true);
+		
+		A.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				painelPrincipal.setVisible(false);
+				
+			}
+		});
+		
+		B.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				painelPrincipal.setVisible(false);
+				painelPontos.setVisible(true);
+				painelPontos.setBounds(100,200,1600,550);
+				painelPontos.setBorder(BorderFactory.createEtchedBorder(Color.BLACK, Color.BLACK));
+				janela.add(painelPontos);
+			}
+		});
 	}
 
 }
