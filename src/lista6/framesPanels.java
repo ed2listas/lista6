@@ -123,7 +123,8 @@ public class framesPanels {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				painelPrincipal.setVisible(false);
-				
+				Strassen matriz = new Strassen();
+				matriz.start(janela);
 			}
 		});
 		
