@@ -112,7 +112,7 @@ public class framesPanels {
 		painelPrincipal.add(C);
 		janela.add(painelPrincipal);
 		
-		painelPrincipal.setBounds(100,200,1600,800);
+		painelPrincipal.setBounds(100,00,1600,1000);
 		
 		janela.add(painelPrincipal);
 		janela.setSize(1800,1000);
@@ -134,7 +134,7 @@ public class framesPanels {
 			public void actionPerformed(ActionEvent e) {
 				painelPrincipal.setVisible(false);
 				painelPontos.setVisible(true);
-				painelPontos.setBounds(100,200,1600,550);
+				painelPontos.setBounds(100,200,1600,1000);
 				painelPontos.setBorder(BorderFactory.createEtchedBorder(Color.BLACK, Color.BLACK));
 				janela.add(painelPontos);
 			}
