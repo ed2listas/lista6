@@ -19,6 +19,15 @@ import javax.swing.JPanel;
  
 public class Strassen
 {
+	
+	public static int cont;
+	public static int cont1;
+	
+	public Strassen() {
+		this.cont = 0;
+		this.cont1 = 0;
+	} 
+	
     public int[][] multiply_normaly(int[][] a, int[][] b, int N)
     {
     	int[][] c = new int[N][N];
@@ -32,6 +41,7 @@ public class Strassen
                 for(int k = 0;k<a.length;k++)
                 {
                     c[i][j] += a[i][k] * b[k][j];
+                    this.cont++;
                 }
             }
         }
@@ -40,7 +50,7 @@ public class Strassen
         
     }
 
-    public static int [][] strassen(int [][] a, int [][] b)
+    public int [][] strassen(int [][] a, int [][] b)
 	{
 		int n = a.length;
 		int [][] result = new int[n][n];
@@ -69,6 +79,7 @@ public class Strassen
 		if(n == 1)
 		{
 			result[0][0] = a[0][0] * b[0][0];
+			this.cont1++;
 		}
 		else
 		{
@@ -207,32 +218,32 @@ public class Strassen
  		
  		long endStrauss = System.nanoTime();
  		long dif = (endStrauss - startStraus);
- 		System.out.println(String.format(dif + "nanosegundos"));
-         
-         //long end = System.currentTimeMillis(); //time after end activity
-  
-         for (int i = 0; i < N; i++)
+ 		String diff_text = ("Algoritimo strassen em matriz 8x8 excutou em: "+ dif + " nanosegundos"); 
+ 		//long end = System.currentTimeMillis(); //time after end activity
+ 		
+ 		
+         /*for (int i = 0; i < N; i++)
          {
              for (int j = 0; j < N; j++)
                  System.out.print(C[i][j] +" ");
              System.out.println();
-         }
-         long startBF = System.nanoTime();
+         }*/
+ 		
+        long startBF = System.nanoTime();
          
-         int[][] D = s.multiply_normaly(A, B, N);
-         
-         long endBF = System.nanoTime();
+        int[][] D = s.multiply_normaly(A, B, N);
+           
+        long endBF = System.nanoTime();
   		long dif2 = (endBF - startBF);
-  		System.out.println(dif2 + " nano segundos");
+  		String diff2_text = ("Algoritimo força bruta em matriz 8x8 excutou em:"+ dif2 + "nanosegundos");
+        
          
-         System.out.println("Testing");
-         
-         for (int i = 0; i < N; i++)
+        /* for (int i = 0; i < N; i++)
          {
              for (int j = 0; j < N; j++)
                  System.out.print(D[i][j] +" ");
              System.out.println();
-         }
+         }*/
          
          //System.out.printf("%.6f ms%n", (end - start) / 1000d);
          
@@ -242,20 +253,28 @@ public class Strassen
          JLabel LabelMatrixA = new JLabel(transform_string(A,N));
          JLabel LabelMatrixB = new JLabel(transform_string(B,N));
          JLabel LabelMatrixC = new JLabel(transform_string(C, N));
+         JLabel nMultStra = new JLabel("|  Numeros de multiplicações strassen: "+ cont1);
+         JLabel nMultBT = new JLabel("|  Numeros de multiplicações : "+ cont);
          JLabel Label_X = new JLabel("X");
-         Label_X.setBounds(400,-50,1600,800);
-         JLabel Label_igual = new JLabel("=");
-         Label_igual.setBounds(900,-50,1600,800);
-         LabelMatrixA.setBounds(0,-50,1600,800);
-        // LabelMatrixA.setFont(new Font("Dialog", Font.PLAIN, 10));
+         Label_X.setBounds(470,-50,1600,800);
+         //JLabel Label_igual = new JLabel("=");
+         //Label_igual.setBounds(900,-50,1600,800);
+         LabelMatrixA.setBounds(100,-50,1600,800);
+         //LabelMatrixA.setFont(new Font("Dialog", Font.PLAIN, 10));
          matrix.add(LabelMatrixA);
-         LabelMatrixB.setBounds(450,-50,1600,800);
+         LabelMatrixB.setBounds(500,-50,1600,800);
          matrix.add(LabelMatrixB);
-         matrix.add(LabelMatrixC);
-         LabelMatrixC.setBounds(1000,-50,1600,800);
+         //matrix.add(LabelMatrixC);
+         //LabelMatrixC.setBounds(1000,-50,1600,800);
+         nMultStra.setBounds(610,50,1600,800);
+         matrix.add(nMultStra);
+         nMultBT.setBounds(610,70,1600,800);
+         matrix.add(nMultBT);
          matrix.add(Label_X);
-         matrix.add(Label_igual);
-        
+         //matrix.add(Label_igual);
+         
+         this.cont = 0;
+         this.cont1 = 0;
          
          Collections.shuffle(numbers);
          
@@ -272,13 +291,13 @@ public class Strassen
                  F[i][j] = numbers.get(generate_random_numbers.nextInt(100));;
   
                
-        long startStraus1 = System.nanoTime();
+        long startStrauss2 = System.nanoTime();
         
         int[][] G= s.strassen(E, F);
  		
- 		long endStrauss1 = System.nanoTime();
- 		long dif3 = (endStrauss - startStraus);
- 		System.out.println(String.format(dif3 + "nanosegundos"));
+ 		long endStrauss2 = System.nanoTime();
+ 		long dif3 = (endStrauss2 - startStrauss2);
+ 		String diff3_text = ("Algoritimo strassen em matriz 16x16 excutou em: "+ dif3 + " nanosegundos");
          
          //long end = System.currentTimeMillis(); //time after end activity
   
@@ -288,13 +307,13 @@ public class Strassen
                  System.out.print(C[i][j] +" ");
              System.out.println();
          }*/
-                  long startBF2 = System.nanoTime();
+        long startBF2 = System.nanoTime();
          
-         int[][] H = s.multiply_normaly(E, F, N1);
+        int[][] H = s.multiply_normaly(E, F, N1);
          
         long endBF2 = System.nanoTime();
   		long dif4 = (endBF2 - startBF2);
-  		System.out.println(dif4 + " nano segundos");
+  		String diff4_text = ("Algoritimo força bruta em matriz 16x16 excutou em: "+ dif4 + " nanosegundos");
          
          /*for (int i = 0; i < N; i++)
          {
@@ -305,26 +324,38 @@ public class Strassen
   		
   		JLabel LabelMatrixE = new JLabel(transform_string(E,N1));
         JLabel LabelMatrixF = new JLabel(transform_string(F,N1));
-        JLabel LabelMatrixG = new JLabel(transform_string(G, N1));
+        //JLabel LabelMatrixG = new JLabel(transform_string(G, N1));
         JLabel Label_X1 = new JLabel("X");
-        Label_X1.setBounds(560,200,1600,800);
+        Label_X1.setBounds(560,210,1600,800);
         JLabel Label_igual1 = new JLabel("=");
-        Label_igual1.setBounds(900,200,1600,800);
-        LabelMatrixE.setBounds(0,200,1600,800);
+        Label_igual1.setBounds(900,210,1600,800);
+        LabelMatrixE.setBounds(0,210,1600,800);
         LabelMatrixE.setFont(new Font("Dialog", Font.PLAIN, 9));
         matrix.add(LabelMatrixE);
-        LabelMatrixF.setBounds(600,200,1600,800);
+        LabelMatrixF.setBounds(600,210,1600,800);
         LabelMatrixF.setFont(new Font("Dialog", Font.PLAIN, 9));
+        JLabel nMultStra1 = new JLabel("|  Numeros de multiplicações strassen: "+ cont1);
+        JLabel nMultBT1 = new JLabel("|  Numeros de multiplicações : "+ cont);
         matrix.add(LabelMatrixF);
         //matrix.add(LabelMatrixG);
         //LabelMatrixG.setBounds(900,300,1600,800);
         //LabelMatrixG.setFont(new Font("Dialog", Font.PLAIN, 8));
+        nMultStra1.setBounds(650,360,1600,800);
+        matrix.add(nMultStra1);
+        nMultBT1.setBounds(650,380,1600,800);
+        matrix.add(nMultBT1);
         matrix.add(Label_X1);
-        matrix.add(Label_igual1);
+        //matrix.add(Label_igual1);
+        
+        this.cont = 0;
+        this.cont1 = 0;
+        
+        System.out.println(cont);
+        System.out.println(cont1);
         
         Collections.shuffle(numbers);
         
-        int N2 = 22;
+        int N2 = 26;
         int[][] I = new int[N2][N2];
         for (int i = 0; i < N2; i++)
             for (int j = 0; j < N2; j++)
@@ -337,13 +368,13 @@ public class Strassen
                 J[i][j] = numbers.get(generate_random_numbers.nextInt(100));;
  
               
-       long startStraus2 = System.nanoTime();
+       long startStraus3 = System.nanoTime();
        
        int[][] K = s.strassen(I, J);
 		
-		long endStraus2 = System.nanoTime();
-		long dif5 = (endStraus2 - startStraus2);
-		System.out.println(String.format(dif5 + "nanosegundos"));
+		long endStraus3 = System.nanoTime();
+		long dif5 = (endStraus3 - startStraus3);
+		String diff5_text = ("Algoritimo strassen em matriz 22x22 excutou em: "+ dif5 + " nanosegundos");
         
         //long end = System.currentTimeMillis(); //time after end activity
  
@@ -358,8 +389,8 @@ public class Strassen
         int[][] L = s.multiply_normaly(I, J, N2);
         
        long endBF3 = System.nanoTime();
- 		long dif6 = (endBF3 - startBF3);
- 		System.out.println(dif6 + " nano segundos");
+ 		long diff6 = (endBF3 - startBF3);
+ 		String diff6_text = ("Algoritimo força bruta em matrix 22x22 executou em: " + diff6 + " nanosegundos");
         
         /*for (int i = 0; i < N; i++)
         {
@@ -368,17 +399,25 @@ public class Strassen
             System.out.println();
         }*/
  		
- 		JLabel LabelMatrixI = new JLabel(transform_string(I,N2));
+ 	   JLabel LabelMatrixI = new JLabel(transform_string(I,N2));
        JLabel LabelMatrixJ = new JLabel(transform_string(J,N2));
        JLabel LabelMatrixK = new JLabel(transform_string(K, N2));
        JLabel Label_X2 = new JLabel("X");
-       Label_X2.setBounds(770,550,1600,800);
+       JLabel Label_diff1 = new JLabel(diff_text);
+       JLabel Label_diff2 = new JLabel(diff2_text);
+       JLabel Label_diff3 = new JLabel(diff3_text);
+       JLabel Label_diff4 = new JLabel(diff4_text);
+       JLabel Label_diff5 = new JLabel(diff5_text);
+       JLabel Label_diff6 = new JLabel(diff6_text);
+       JLabel nMultStra2 = new JLabel("|  Numeros de multiplicações strassen: "+ cont1);
+       JLabel nMultBT2 = new JLabel("|  Numeros de multiplicações : "+ cont);
+       Label_X2.setBounds(870,550,1600,800);
        //JLabel Label_igual2 = new JLabel("=");
        //Label_igual2.setBounds(900,270,1600,800);
        LabelMatrixI.setBounds(100,550,1600,800);
        LabelMatrixI.setFont(new Font("Dialog", Font.PLAIN, 8));
        matrix.add(LabelMatrixI);
-       LabelMatrixJ.setBounds(800,550,1600,800);
+       LabelMatrixJ.setBounds(900,550,1600,800);
        LabelMatrixJ.setFont(new Font("Dialog", Font.PLAIN, 8));
        matrix.add(LabelMatrixJ);
        //matrix.add(LabelMatrixG);
@@ -386,7 +425,24 @@ public class Strassen
        //LabelMatrixG.setFont(new Font("Dialog", Font.PLAIN, 8));
        matrix.add(Label_X2);
        //matrix.add(Label_igual1);
-        screen.add(matrix);
+       Label_diff1.setBounds(100,50,1600,800);
+       matrix.add(Label_diff1);
+       Label_diff2.setBounds(100,70,1600,800);
+       matrix.add(Label_diff2);
+       Label_diff3.setBounds(100,360,1600,800);
+       matrix.add(Label_diff3);
+       Label_diff4.setBounds(100,380,1600,800);
+       matrix.add(Label_diff4);
+       Label_diff5.setBounds(100,700,1600,800);
+       matrix.add(Label_diff5);
+       Label_diff6.setBounds(100,720,1600,800);
+       matrix.add(Label_diff6);
+       nMultStra2.setBounds(650,700,1600,800);
+       matrix.add(nMultStra2);
+       nMultBT2.setBounds(650,720,1600,800);
+       matrix.add(nMultBT2);
+       
+       screen.add(matrix);
  
     }
     
