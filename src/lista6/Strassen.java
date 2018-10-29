@@ -275,6 +275,10 @@ public class Strassen
          matrix.add(Label_X);
          //matrix.add(Label_igual);
          
+         JButton randomize = new JButton("Randomize");
+ 		randomize.setBounds(1600,50, 200, 30);
+ 		matrix.add(randomize);
+         
          JButton matrix8x8_result = new JButton("Mostrar resultado");
          matrix8x8_result.setBounds(1000,440,200,30);
          matrix.add(matrix8x8_result);
@@ -565,7 +569,7 @@ public class Strassen
 				
 			}
 		});
-       
+              
        screen.add(matrix);
  
     }

@@ -81,15 +81,24 @@ public class framesPanels {
 
 	public static void main(String[] args) {
 		
-		int w = 1200;
-		int h = 600;
+		//int w = 1200;
+		//int h = 600;
 		
+		Strassen matriz = new Strassen();
 		JFrame janela = new JFrame("");
-		Painel painelPontos = new Painel(w, h);
+		//Painel painelPontos = new Painel(w, h);
 		
 		janela.getContentPane().setLayout(null);
 		
-		janela.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+		JButton randomize = new JButton("Randomize");
+		randomize.setBounds(1600,50, 200, 30);
+		janela.add(randomize);
+		
+		janela.setVisible(true);
+		janela.setSize(1900,1000);
+		
+		/*janela.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+		janela.setSize(1900,1000);
 		painelPontos.setBounds(50,50,w,h);
 		painelPontos.setBorder(BorderFactory.createEtchedBorder(Color.BLACK, Color.BLACK));
 		
@@ -102,9 +111,9 @@ public class framesPanels {
 		C.setBounds(500,300,500,30);
 		
 		JLabel Titulo = new JLabel("Titulo");
-		Titulo.setBounds(730,30,380,30);
+		Titulo.setBounds(730,30,380,30);*/
 		
-		JPanel painelPrincipal = new JPanel();
+		/*JPanel painelPrincipal = new JPanel();
 		painelPrincipal.setLayout(null);
 		painelPrincipal.add(Titulo);
 		painelPrincipal.add(A);
@@ -117,8 +126,8 @@ public class framesPanels {
 		janela.add(painelPrincipal);
 		janela.setSize(1800,1000);
 		janela.setVisible(true);
-		
-		A.addActionListener(new ActionListener() {
+		*/
+		/*A.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -138,7 +147,27 @@ public class framesPanels {
 				painelPontos.setBorder(BorderFactory.createEtchedBorder(Color.BLACK, Color.BLACK));
 				janela.add(painelPontos);
 			}
+		});*/
+		
+		matriz.start(janela);
+		
+		randomize.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				janela.dispose();
+				Strassen matriz2 = new Strassen();
+				JFrame janela2 = new JFrame("");
+				
+				janela2.getContentPane().setLayout(null);
+				
+				janela2.setVisible(true);
+				janela2.setSize(1900,1000);
+				matriz2.start(janela2);
+				janela2.add(randomize);
+			}
 		});
+		
 	}
 
 }
