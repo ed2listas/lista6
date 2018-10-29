@@ -2,6 +2,8 @@ package lista6;
 
 import java.awt.Font;
 import java.awt.Frame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -13,6 +15,7 @@ import java.util.Random;
  
 import java.util.Scanner;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -264,14 +267,54 @@ public class Strassen
          matrix.add(LabelMatrixA);
          LabelMatrixB.setBounds(500,-50,1600,800);
          matrix.add(LabelMatrixB);
-         //matrix.add(LabelMatrixC);
-         //LabelMatrixC.setBounds(1000,-50,1600,800);
+         LabelMatrixC.setBounds(100,-50,1600,800);
          nMultStra.setBounds(610,50,1600,800);
          matrix.add(nMultStra);
          nMultBT.setBounds(610,70,1600,800);
          matrix.add(nMultBT);
          matrix.add(Label_X);
          //matrix.add(Label_igual);
+         
+         JButton matrix8x8_result = new JButton("Mostrar resultado");
+         matrix8x8_result.setBounds(1000,440,200,30);
+         matrix.add(matrix8x8_result);
+         
+         JButton matrix8x8_back = new JButton("Ver matrizes");
+         matrix8x8_back.setBounds(1000,440,200,30);
+         matrix.add(matrix8x8_back);
+         
+         matrix.add(LabelMatrixC);
+		 matrix.add(matrix8x8_back);
+		 LabelMatrixC.setVisible(false);
+		 matrix8x8_back.setVisible(false);
+         
+         matrix8x8_result.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				matrix8x8_result.setVisible(false);
+				LabelMatrixA.setVisible(false);
+				LabelMatrixB.setVisible(false);
+				Label_X.setVisible(false);
+				LabelMatrixC.setVisible(true);
+				matrix8x8_back.setVisible(true);
+				
+			}
+		});
+         
+         matrix8x8_back.addActionListener(new ActionListener() {
+ 			
+ 			@Override
+ 			public void actionPerformed(ActionEvent e) {
+ 				LabelMatrixC.setVisible(false);
+ 				matrix8x8_back.setVisible(false);
+ 				matrix8x8_result.setVisible(true);
+ 				LabelMatrixA.setVisible(true);
+ 				LabelMatrixB.setVisible(true);
+ 				Label_X.setVisible(true);
+ 				
+ 			}
+ 		});
          
          this.cont = 0;
          this.cont1 = 0;
@@ -324,21 +367,20 @@ public class Strassen
   		
   		JLabel LabelMatrixE = new JLabel(transform_string(E,N1));
         JLabel LabelMatrixF = new JLabel(transform_string(F,N1));
-        //JLabel LabelMatrixG = new JLabel(transform_string(G, N1));
+        JLabel LabelMatrixG = new JLabel(transform_string(G, N1));
         JLabel Label_X1 = new JLabel("X");
-        Label_X1.setBounds(560,210,1600,800);
+        Label_X1.setBounds(660,210,1600,800);
         JLabel Label_igual1 = new JLabel("=");
         Label_igual1.setBounds(900,210,1600,800);
-        LabelMatrixE.setBounds(0,210,1600,800);
+        LabelMatrixE.setBounds(100,210,1600,800);
         LabelMatrixE.setFont(new Font("Dialog", Font.PLAIN, 9));
         matrix.add(LabelMatrixE);
-        LabelMatrixF.setBounds(600,210,1600,800);
+        LabelMatrixF.setBounds(700,210,1600,800);
         LabelMatrixF.setFont(new Font("Dialog", Font.PLAIN, 9));
         JLabel nMultStra1 = new JLabel("|  Numeros de multiplicações strassen: "+ cont1);
         JLabel nMultBT1 = new JLabel("|  Numeros de multiplicações : "+ cont);
         matrix.add(LabelMatrixF);
-        //matrix.add(LabelMatrixG);
-        //LabelMatrixG.setBounds(900,300,1600,800);
+        LabelMatrixG.setBounds(100,210,1600,800);
         //LabelMatrixG.setFont(new Font("Dialog", Font.PLAIN, 8));
         nMultStra1.setBounds(650,360,1600,800);
         matrix.add(nMultStra1);
@@ -346,6 +388,47 @@ public class Strassen
         matrix.add(nMultBT1);
         matrix.add(Label_X1);
         //matrix.add(Label_igual1);
+        
+        JButton matrix16x16_result = new JButton("Mostrar resultado");
+        matrix16x16_result.setBounds(1000,760,200,30);
+        matrix.add(matrix16x16_result);
+        
+        JButton matrix16x16_back = new JButton("Ver matrizes");
+        matrix16x16_back.setBounds(1000,760,200,30);
+        matrix.add(matrix16x16_back);
+        
+        matrix.add(LabelMatrixG);
+        LabelMatrixG.setFont(new Font("Dialog", Font.PLAIN, 9));
+        LabelMatrixG.setVisible(false);
+        matrix16x16_back.setVisible(false);
+        
+        matrix16x16_result.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				matrix16x16_result.setVisible(false);
+				LabelMatrixE.setVisible(false);
+				LabelMatrixF.setVisible(false);
+				Label_X1.setVisible(false);
+				LabelMatrixG.setVisible(true);
+				matrix16x16_back.setVisible(true);
+				
+			}
+		});
+        
+        matrix16x16_back.addActionListener(new ActionListener() {
+ 			
+ 			@Override
+ 			public void actionPerformed(ActionEvent e) {
+ 				LabelMatrixG.setVisible(false);
+ 				matrix16x16_back.setVisible(false);
+ 				matrix16x16_result.setVisible(true);
+ 				LabelMatrixE.setVisible(true);
+ 				LabelMatrixF.setVisible(true);
+ 				Label_X1.setVisible(true);
+ 				
+ 			}
+ 		});
         
         this.cont = 0;
         this.cont1 = 0;
@@ -374,7 +457,7 @@ public class Strassen
 		
 		long endStraus3 = System.nanoTime();
 		long dif5 = (endStraus3 - startStraus3);
-		String diff5_text = ("Algoritimo strassen em matriz 22x22 excutou em: "+ dif5 + " nanosegundos");
+		String diff5_text = ("Algoritimo strassen em matriz 26x26 excutou em: "+ dif5 + " nanosegundos");
         
         //long end = System.currentTimeMillis(); //time after end activity
  
@@ -390,7 +473,7 @@ public class Strassen
         
        long endBF3 = System.nanoTime();
  		long diff6 = (endBF3 - startBF3);
- 		String diff6_text = ("Algoritimo força bruta em matrix 22x22 executou em: " + diff6 + " nanosegundos");
+ 		String diff6_text = ("Algoritimo força bruta em matrix 26x26 executou em: " + diff6 + " nanosegundos");
         
         /*for (int i = 0; i < N; i++)
         {
@@ -421,7 +504,6 @@ public class Strassen
        LabelMatrixJ.setFont(new Font("Dialog", Font.PLAIN, 8));
        matrix.add(LabelMatrixJ);
        //matrix.add(LabelMatrixG);
-       //LabelMatrixG.setBounds(900,300,1600,800);
        //LabelMatrixG.setFont(new Font("Dialog", Font.PLAIN, 8));
        matrix.add(Label_X2);
        //matrix.add(Label_igual1);
@@ -441,6 +523,48 @@ public class Strassen
        matrix.add(nMultStra2);
        nMultBT2.setBounds(650,720,1600,800);
        matrix.add(nMultBT2);
+       
+       JButton matrix26x26_result = new JButton("Mostrar resultado");
+       matrix26x26_result.setBounds(1000,1100,200,30);
+       matrix.add(matrix26x26_result);
+       
+       JButton matrix26x26_back = new JButton("Ver matrizes");
+       matrix26x26_back.setBounds(1000,1100,200,30);
+       matrix.add(matrix26x26_back);
+       
+       matrix.add(LabelMatrixK);
+       LabelMatrixK.setBounds(100,550,1600,800);
+       LabelMatrixK.setFont(new Font("Dialog", Font.PLAIN, 8));
+       LabelMatrixK.setVisible(false);
+       matrix26x26_back.setVisible(false);
+       
+       matrix26x26_result.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				matrix26x26_result.setVisible(false);
+				LabelMatrixI.setVisible(false);
+				LabelMatrixJ.setVisible(false);
+				Label_X2.setVisible(false);
+				LabelMatrixK.setVisible(true);
+				matrix26x26_back.setVisible(true);
+				
+			}
+		});
+       
+       matrix26x26_back.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				LabelMatrixK.setVisible(false);
+				matrix26x26_back.setVisible(false);
+				matrix26x26_result.setVisible(true);
+				LabelMatrixI.setVisible(true);
+				LabelMatrixJ.setVisible(true);
+				Label_X2.setVisible(true);
+				
+			}
+		});
        
        screen.add(matrix);
  
